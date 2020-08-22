@@ -80,8 +80,6 @@
 
                 xhr.send();
                 page++;
-
-
             }
 
             form.addEventListener( 'submit', loadPosts );
