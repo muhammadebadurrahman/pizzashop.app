@@ -5,8 +5,7 @@ namespace App\Http\Controllers;
 use App\Pizza;
 use Illuminate\Http\Request;
 
-class PizzaController extends Controller
-{
+class PizzaController extends Controller {
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +13,7 @@ class PizzaController extends Controller
      */
     public function index() {
         // $pizzas = Pizza::all();
-        $pizzas = Pizza::orderBy('created_at')->paginate(9);
+        $pizzas = Pizza::orderBy( 'created_at' )->paginate( 9 );
         // $pizzas = Pizza::where('type', 'bangali')->get();
 
         return view( 'pizzas.index' )->with( 'pizzas', $pizzas );
@@ -26,7 +25,7 @@ class PizzaController extends Controller
      */
     public function content_for_ajax() {
         // $pizzas = Pizza::all();
-        $pizzas = Pizza::orderBy('created_at')->paginate(2)->toJson();
+        $pizzas = Pizza::orderBy( 'created_at' )->paginate( 2 )->toJson();
 
         return $pizzas;
     }
@@ -37,8 +36,9 @@ class PizzaController extends Controller
      */
     public function ajax_load() {
         // $pizzas = Pizza::all();
-        $pizzas = Pizza::orderBy('created_at')->paginate(1);
+        $pizzas = Pizza::orderBy( 'created_at' )->paginate( 1 );
         // $pizzas = Pizza::where('type', 'bangali')->get();
+
         return view( 'pizzas.ajax' )->with( 'pizzas', $pizzas );
     }
 
@@ -47,8 +47,7 @@ class PizzaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
+    public function create() {
         return view( 'pizzas.create' );
     }
 
@@ -58,20 +57,19 @@ class PizzaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
+    public function store( Request $request ) {
 
 
         $pizza = new Pizza();
-
-        $pizza->name = request('name');
-        $pizza->type = request('type');
-        $pizza->base = request('base');
-        $pizza->toppings = request('toppings');
+        $pizza->name = request( 'name' );
+        $pizza->type = request( 'type' );
+        $pizza->base = request( 'base' );
+        $pizza->toppings = request( 'toppings' );
 
         $pizza->save();
-        return redirect('/pizza')->with('msg', 'Thank you <strong>'.$pizza->name.'</strong> for your order!');
-        
+
+        return redirect( '/pizza' )->with( 'msg', 'Thank you <strong>' . $pizza->name . '</strong> for your order!' );
+
         // return request('toppings');
         // dd(request()->all());
     }
@@ -82,10 +80,10 @@ class PizzaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        $pizza = Pizza::findOrFail($id);
-        return view('pizzas.show')->with( 'pizza', $pizza );
+    public function show( $id ) {
+        $pizza = Pizza::findOrFail( $id );
+
+        return view( 'pizzas.show' )->with( 'pizza', $pizza );
     }
 
     /**
@@ -94,8 +92,7 @@ class PizzaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
+    public function edit( $id ) {
         //
     }
 
@@ -106,8 +103,7 @@ class PizzaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
+    public function update( Request $request, $id ) {
         //
     }
 
@@ -117,8 +113,7 @@ class PizzaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
+    public function destroy( $id ) {
         //
     }
 }
