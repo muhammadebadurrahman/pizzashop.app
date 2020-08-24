@@ -14,8 +14,6 @@
         <button id="load-more" class="btn btn-primary">Load More</button>
 
 </form>
-
-
     </div>
 </div>
 
